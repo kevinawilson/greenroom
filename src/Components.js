@@ -1,4 +1,6 @@
 import React from 'react';
+import C from './constants.js';
+import uuid from 'uuid/v1';
 
 const UserRole = ({ roles }) => {
   const productionList = roles.map(({id, show, company, role}) => {
@@ -12,15 +14,15 @@ const UserRole = ({ roles }) => {
   return productionList;
 }
 
-const AddButton = ({ roles, callback }) => {
-  let newShow = {
-    id: "4",
-    show: "Into the Woods",
-    company: "Spotlight Playhouse",
-    role: "Milky White"
-  };
-  
-  return <a href="#" onClick={callback(newShow)}>Add a show</a>;
+const AddButton = ({roles, onClick}) => {
+  const action = {
+        type: C.ADD_USER_ROLE,
+        id: uuid(),
+        show: "Into the Woods",
+        company: "Spotlight Playhouse",
+        role: "Milky White"
+      };
+  return <a href="#" onClick={onClick(action)} >Add a show</a>;
 }
 
 export { UserRole, AddButton };

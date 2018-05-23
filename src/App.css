@@ -2,20 +2,17 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 80px;
-}
-
 .App-header {
   background-color: #077718;
-  height: 150px;
-  padding: 20px;
+  padding: 10px;
   color: white;
   text-align: left;
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 3.0em;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding-left: 30px;
 }
 
 .App-intro {
