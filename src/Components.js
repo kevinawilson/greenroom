@@ -14,7 +14,7 @@ const UserRole = ({ roles }) => {
   return productionList;
 }
 
-const AddButton = ({roles, onClick}) => {
+const AddButton = ({onClick}) => {
   const action = {
         type: C.ADD_USER_ROLE,
         id: uuid(),

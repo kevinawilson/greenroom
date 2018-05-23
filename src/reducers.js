@@ -1,10 +1,22 @@
 import C from './constants.js';
 
-export const roleReducer = (state = [], action) => {
+const user = (state = {}, action) => {
+  switch (action.type) {
+    case C.EDIT_USER:
+      return {
+        id: action.id,
+        name: action.name,
+      };
+    default:
+      return state;
+  }
+};
+
+const productions = (state = [], action) => {
   switch (action.type) {
     case C.ADD_USER_ROLE:
       return [
-        ...state.productions,
+        ...state,
         {
           id: action.id,
           show: action.show,
@@ -15,4 +27,6 @@ export const roleReducer = (state = [], action) => {
     default:
       return state;
   }
-}
+};
+
+export {user, productions};
