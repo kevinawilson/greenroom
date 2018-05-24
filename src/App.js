@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 import store from './store.js';
 import {UserRole, AddButton} from './Components.js';
-import C from './constants.js';
 import './App.css';
 
 class App extends Component {
 
-  actionProxy = function (action) {
+  actionProxy(action) {
+    console.log(action);
     store.dispatch(action);
-    console.log(store.getState());
   };
 
   render() {
@@ -18,7 +17,7 @@ class App extends Component {
       </header>
       <h2>{store.getState().user.name}</h2>
       <UserRole roles={store.getState().productions}/>
-      <AddButton onClick={this.actionProxy} />
+      <AddButton onClick={this.actionProxy}  />
     </div>);
   };
 };
