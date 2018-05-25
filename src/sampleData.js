@@ -3,7 +3,7 @@ var sampleData = {
     id: "45a57030-5d5a-11e8-9d98-a97fe30c17ae",
     name: "Kevin A. Wilson"
   },
-  productions: [{
+  roles: [{
       id: "1",
       show: "Man of La Mancha",
       company: "Pentucket Players",

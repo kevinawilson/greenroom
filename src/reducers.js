@@ -12,7 +12,7 @@ const user = (state = {}, action) => {
   }
 };
 
-const productions = (state = [], action) => {
+const roles = (state = [], action) => {
   switch (action.type) {
     case C.ADD_USER_ROLE:
       return [
@@ -24,9 +24,11 @@ const productions = (state = [], action) => {
           role: action.role
         }
       ];
+    case C.DELETE_USER_ROLE:
+     return state.filter(c => c.id !== action.id);
     default:
       return state;
   }
 };
 
-export {user, productions};
+export {user, roles};

@@ -1,23 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {addUserRole} from './actions.js';
-
-const UserRole = ({roles}) => {
-  return (roles.map(({id, show, company, role}) => {
-    return <div key={id}>
-      <p>Show:
-        <em>{show}</em>
-      </p>
-      <p>Company: {company}</p>
-      <p>Role: {role}</p>
-      <hr/>
-    </div>;
-  }))
-}
-
-UserRole.propTypes = {
-  productions: PropTypes.array
-}
 
 const AddRoleForm = ({onSubmit}) => {
   var show,
@@ -41,7 +23,7 @@ const AddRoleForm = ({onSubmit}) => {
 
   const submitHandler = function (e) {
     (show && company && role) ? onSubmit(addUserRole(show, company, role)) : console.log('Error');
-     e.preventDefault();
+    e.preventDefault();
   };
 
   return (<div>
@@ -69,7 +51,4 @@ const AddRoleForm = ({onSubmit}) => {
   </div>)
 }
 
-export {
-  UserRole,
-  AddRoleForm
-};
+export default AddRoleForm;
