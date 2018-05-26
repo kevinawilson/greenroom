@@ -43,6 +43,11 @@ const ui = (state = {}, action) => {
         ...state,
         showAddRoleForm: false
       };
+    case C.CHANGE_VIEW:
+      return {
+        ...state,
+        currentView: action.newView
+      };
     default:
       return state;
     }

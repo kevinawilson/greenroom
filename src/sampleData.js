@@ -23,6 +23,7 @@ var sampleData = {
     }
   ],
   ui: {
+    currentView: "user",
     showAddRoleForm: false
   }
 }

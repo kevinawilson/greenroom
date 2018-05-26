@@ -1,6 +1,13 @@
 import C from '../utils/constants.js';
 import uuid from 'uuid/v1';
 
+export const changeView = (newView) => {
+  return {
+    type: C.CHANGE_VIEW,
+    newView: newView
+  }
+}
+
 export const addUserRole = (show, company, role) => {
   return {
     type: C.ADD_USER_ROLE,
