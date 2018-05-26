@@ -21,7 +21,10 @@ var sampleData = {
       company: "Spotlight Playhouse",
       role: "Mayor Shinn"
     }
-  ]
+  ],
+  ui: {
+    showAddRoleForm: false
+  }
 }
 
 

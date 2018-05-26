@@ -1,4 +1,4 @@
-import C from './constants.js';
+import C from '../utils/constants.js';
 
 const user = (state = {}, action) => {
   switch (action.type) {
@@ -31,4 +31,21 @@ const roles = (state = [], action) => {
   }
 };
 
-export {user, roles};
+const ui = (state = {}, action) => {
+  switch (action.type) {
+    case C.SHOW_ADD_ROLE_FORM:
+      return {
+        ...state,
+        showAddRoleForm: true
+      };
+    case C.HIDE_ADD_ROLE_FORM:
+      return {
+        ...state,
+        showAddRoleForm: false
+      };
+    default:
+      return state;
+    }
+  }
+
+export {user, roles, ui};

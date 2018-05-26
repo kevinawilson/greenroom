@@ -1,0 +1,9 @@
+const constants = {
+  ADD_USER_ROLE: "ADD_USER_ROLE",
+  EDIT_USER: "EDIT_USER",
+  DELETE_USER_ROLE: "DELETE_USER_ROLE",
+  SHOW_ADD_ROLE_FORM: "SHOW_ADD_ROLE_FORM",
+  HIDE_ADD_ROLE_FORM: "HIDE_ADD_ROLE_FORM"
+}
+
+export default constants;

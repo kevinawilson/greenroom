@@ -1,5 +1,5 @@
 import React from 'react';
-import {addUserRole} from './actions.js';
+import {addUserRole, hideAddRoleForm} from '../utils/actions.js';
 
 const AddRoleForm = ({onSubmit}) => {
   var show,
@@ -22,9 +22,17 @@ const AddRoleForm = ({onSubmit}) => {
   };
 
   const submitHandler = function (e) {
-    (show && company && role) ? onSubmit(addUserRole(show, company, role)) : console.log('Error');
+    if (show && company && role) {
+      onSubmit(addUserRole(show, company, role));
+      onSubmit(hideAddRoleForm());
+    };
     e.preventDefault();
   };
+
+  const cancelAdd = function (e) {
+    onSubmit(hideAddRoleForm());
+    e.preventDefault();
+  }
 
   return (<div>
     <form onSubmit={submitHandler}>
@@ -34,20 +42,16 @@ const AddRoleForm = ({onSubmit}) => {
       </label>
       <label>
         Company
-        <select name="company" value={company} onChange={handleChange}>
-          <option value={null}>--Select One--</option>
-          <option value="Pentucket Players">Pentucket Players</option>
-          <option value="Spotlight Playhouse">Spotlight Playhouse</option>
-          <option value="Colonial Chorus">Colonial Chorus</option>
-          <option value="Merrimack OnStagers">Merrimack OnStagers</option>
-        </select>
+        <input type="text" name="company" value={company} onChange={handleChange}/>
       </label>
       <label>
         Role
         <input type="text" name="role" value={role} onChange={handleChange}/>
       </label>
       <input type="submit" value="Submit"/>
+      <input type="submit" value="Cancel" onClick={cancelAdd}/>
     </form>
+
   </div>)
 }
 
