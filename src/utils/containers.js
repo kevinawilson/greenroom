@@ -1,18 +1,13 @@
 import {connect} from 'react-redux';
+import NavBar from '../ui/NavBar.js';
 import UserRolesList from '../ui/UserRolesList.js';
 import RolesView from '../ui/RolesView.js';
 import AddRoleForm from '../ui/AddRoleForm.js';
 import ShowAddRoleFormButton from '../ui/ShowAddRoleFormButton.js';
-import NavBar from '../ui/NavBar.js';
+import CompaniesView from '../ui/CompaniesView.js';
+import CompaniesList from '../ui/CompaniesList.js'
 
-export const RolesViewContainer = connect(
-  state => ({
-    user: {...state.user},
-    ui: {...state.ui}
-  }),
-  null
-)(RolesView);
-
+//Navication
 export const NavBarContainer = connect(
   null,
   dispatch => ({
@@ -21,6 +16,15 @@ export const NavBarContainer = connect(
     }
   })
 )(NavBar);
+
+//Roles View
+export const RolesViewContainer = connect(
+  state => ({
+    user: {...state.user},
+    ui: {...state.ui}
+  }),
+  null
+)(RolesView);
 
 export const UserRolesListContainer = connect(
   state => ({
@@ -50,3 +54,18 @@ export const ShowAddRoleFormButtonContainer = connect(
     }
   })
 )(ShowAddRoleFormButton);
+
+//Companies View
+export const CompaniesViewContainer = connect(
+  state => ({
+    companies: [...state.companies]
+  }),
+  null
+)(CompaniesView);
+
+export const CompaniesListContainer = connect(
+  state => ({
+    companies: [...state.companies]
+  }),
+  null
+)(CompaniesList);

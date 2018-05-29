@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import store from '../store.js';
 import {
   RolesViewContainer,
-  NavBarContainer
+  NavBarContainer,
+  CompaniesViewContainer
 } from '../utils/containers.js';
 import '../App.css';
 
@@ -12,8 +13,14 @@ class App extends Component {
     switch (store.getState().ui.currentView) {
       case "user":
         return <RolesViewContainer />;
+      case "companies":
+        return <CompaniesViewContainer />
+      case "productions":
+        return <p>Productions</p>
+      case "shows":
+        return <p>Shows</p>
       default:
-        null;
+        return null;
     }
   }
 

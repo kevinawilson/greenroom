@@ -46,6 +46,7 @@ const ui = (state = {}, action) => {
     case C.CHANGE_VIEW:
       return {
         ...state,
+        showAddRoleForm: false,
         currentView: action.newView
       };
     default:
@@ -53,4 +54,11 @@ const ui = (state = {}, action) => {
     }
   }
 
-export {user, roles, ui};
+  const companies = (state = {}, action) => {
+    switch (action.type) {
+        default:
+        return state;
+      }
+    }
+
+export {user, roles, ui, companies};

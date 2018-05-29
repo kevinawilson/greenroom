@@ -9,7 +9,7 @@ const NavBar = ({onClick}) => {
   }
 
   return (
-    <nav>
+    <nav id='navbar'>
       <ul onClick={handleClick}>
         <li id='user'>User</li>
         <li id='companies'>Companies</li>

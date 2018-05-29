@@ -2,9 +2,9 @@ import React from 'react';
 import {addUserRole, hideAddRoleForm} from '../utils/actions.js';
 
 const AddRoleForm = ({onSubmit}) => {
-  var show,
-    company,
-    role;
+  var show;
+  var company;
+  var role;
 
   const handleChange = function (e) {
     switch (e.target.name) {
