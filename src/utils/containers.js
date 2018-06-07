@@ -28,7 +28,9 @@ export const RolesViewContainer = connect(
 
 export const UserRolesListContainer = connect(
   state => ({
-    roles: [...state.roles]
+    roles: [...state.roles],
+    companies: [...state.companies],
+    productions: [...state.productions]
   }),
   dispatch => ({
     onDelete(action) {

@@ -61,4 +61,11 @@ const ui = (state = {}, action) => {
       }
     }
 
-export {user, roles, ui, companies};
+    const productions = (state = {}, action) => {
+      switch (action.type) {
+          default:
+          return state;
+        }
+      }
+
+export {user, roles, ui, companies, productions};

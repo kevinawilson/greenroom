@@ -60,7 +60,7 @@ var sampleData = {
     },
     {
       id: "e0be0fb4-3e64-4f3a-87f3-a60878c84b2a",
-      company: "53681073-03d1-4bd2-b6df-07e0fdf5a4eb,"
+      company: "53681073-03d1-4bd2-b6df-07e0fdf5a4eb",
       show: "Man of La Mancha",
       date: "April 2011",
       venue: "The Rogers Center"
