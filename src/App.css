@@ -2,7 +2,7 @@
   text-align: left;
 }
 
-.App .user-container {
+.App .user-container, .App .companies-container {
   padding-left: 40px;
   padding-right: 40px;
 }

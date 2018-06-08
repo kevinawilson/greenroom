@@ -67,7 +67,8 @@ export const CompaniesViewContainer = connect(
 
 export const CompaniesListContainer = connect(
   state => ({
-    companies: [...state.companies]
+    companies: [...state.companies],
+    productions: [...state.productions]
   }),
   null
 )(CompaniesList);

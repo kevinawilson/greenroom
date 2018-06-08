@@ -30,24 +30,21 @@ var sampleData = {
       name: "Spotlight Playhouse",
 	    city:	"Lawrence",
       usState: "MA",
-      website: "www.spotlightplayhouse.org",
-	    productions: []
+      website: "www.spotlightplayhouse.org"
     },
     {
       id: "53681073-03d1-4bd2-b6df-07e0fdf5a4eb",
       name: "Pentucket Players",
       city:	"Lawrence",
       usState: "MA",
-      website: "www.pentucketplayers.org",
-      productions: []
+      website: "www.pentucketplayers.org"
     },
     {
       id: "081d88a6-cbb7-4497-be29-43cd2e9e8494",
       name: "Colonial Chorus Players",
       city:	"Reading",
       usState: "MA",
-      website: "www.ccp1961.org",
-      productions: []
+      website: "www.ccp1961.org"
     },
   ],
   productions: [

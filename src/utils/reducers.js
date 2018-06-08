@@ -54,14 +54,14 @@ const ui = (state = {}, action) => {
     }
   }
 
-  const companies = (state = {}, action) => {
+  const companies = (state = [], action) => {
     switch (action.type) {
         default:
         return state;
       }
     }
 
-    const productions = (state = {}, action) => {
+    const productions = (state = [], action) => {
       switch (action.type) {
           default:
           return state;

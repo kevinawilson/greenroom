@@ -11,9 +11,9 @@ const UserRole = ({id, show, company, role, onDelete}) => {
   return (
       <div>
       <ul>
-      <li>Show: <em>{show}</em></li>
-      <li>Company: {company}</li>
-      <li>Role: {role}</li>
+        <li>Show: <em>{show}</em></li>
+        <li>Company: {company}</li>
+        <li>Role: {role}</li>
       </ul>
       <form onSubmit={submitHandler}>
         <input type="submit" value="Delete Role" />
