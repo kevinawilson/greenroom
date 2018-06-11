@@ -1,25 +1,17 @@
 import React from 'react';
-import {deleteUserRole} from '../utils/actions.js';
 
-const UserRole = ({id, show, company, role, onDelete}) => {
-
-  const submitHandler = function (e) {
-    e.preventDefault();
-    onDelete(deleteUserRole(id))
-  };
+const UserRole = ({id, show, company, role, onClick}) => {
 
   return (
-      <div>
+    <div>
       <ul>
         <li>Show: <em>{show}</em></li>
         <li>Company: {company}</li>
         <li>Role: {role}</li>
       </ul>
-      <form onSubmit={submitHandler}>
-        <input type="submit" value="Delete Role" />
-      </form>
+      <button type='button' onClick={onClick}>Delete Role</button>
       <hr/>
     </div>)
-}
+};
 
 export default UserRole;

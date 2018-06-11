@@ -1,58 +1,33 @@
-import React from 'react';
-import {addUserRole, hideAddRoleForm} from '../utils/actions.js';
+import React, {Component} from 'react';
+import Dropdown from 'react-dropdown';
+import {addUserRole, hideAddRoleForm, selectCompany} from '../utils/actions.js';
+import {SelectCompanyContainer, SelectProductionContainer} from '../utils/containers.js';
 
-const AddRoleForm = ({onSubmit}) => {
-  var show;
-  var company;
-  var role;
+class AddRoleForm extends Component {
 
-  const handleChange = function (e) {
-    switch (e.target.name) {
-      case "show":
-        show = e.target.value;
-        break;
-      case "company":
-        company = e.target.value;
-        break;
-      case "role":
-        role = e.target.value;
-        break;
-      default:
-    }
+  constructor(props) {
+    super(props);
+    this.ui = props.ui;
+    this.currentValue = null;
+    this.selectOptions = props.companies.map(company => ({ value: company.id, label: company.name }));
+    this.handleChange = this.handleChange.bind(this);
+    this.onSelect = props.onSelect;
   };
 
-  const submitHandler = function (e) {
-    if (show && company && role) {
-      onSubmit(addUserRole(show, company, role));
-      onSubmit(hideAddRoleForm());
+  handleChange(e) {
+    console.log(this.ui);
+    if (!this.ui.companySelected) {
+      this.onSelect(selectCompany());
     };
-    e.preventDefault();
   };
 
-  const cancelAdd = function (e) {
-    onSubmit(hideAddRoleForm());
-    e.preventDefault();
-  }
-
-  return (<div>
-    <form onSubmit={submitHandler}>
-      <label>
-        Show
-        <input type="text" name="show" value={show} onChange={handleChange}/>
-      </label>
-      <label>
-        Company
-        <input type="text" name="company" value={company} onChange={handleChange}/>
-      </label>
-      <label>
-        Role
-        <input type="text" name="role" value={role} onChange={handleChange}/>
-      </label>
-      <input type="submit" value="Submit"/>
-      <input type="submit" value="Cancel" onClick={cancelAdd}/>
-    </form>
-
-  </div>)
-}
+  render() {
+    return (
+      <div>
+        <Dropdown options={this.selectOptions} onChange={this.handleChange} value={this.currentValue} placeholder="Select a theater company" />
+      </div>
+    )
+  };
+};
 
 export default AddRoleForm;

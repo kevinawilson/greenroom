@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import UserRole from '../ui/UserRole.js'
+import UserRole from '../ui/UserRole.js';
+import {deleteUserRole} from '../utils/actions.js';
 
-const UserRolesList = (state, onDelete) => {
+const UserRolesList = ({roles, companies, productions, onDelete}) => {
 
-  return state.roles.map(({id, production, role}) => {
-    let currentProduction = state.productions.find(function(e) {
+  return roles.map(({id, production, role}) => {
+    let currentProduction = productions.find(function(e) {
       return e.id === production;
     });
 
-    let currentCompany = state.companies.find(function(e) {
+    let currentCompany = companies.find(function(e) {
       return e.id === currentProduction.company;
     }).name;
 
-    return <UserRole key={id} id={id} show={currentProduction.show} company={currentCompany} role={role}
-      onDelete={onDelete} />
+    return <UserRole key={id} id={id} show={currentProduction.show} company={currentCompany} role={role} onClick={() => onDelete(deleteUserRole(id))}/>
   })
 }
 

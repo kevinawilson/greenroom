@@ -36,3 +36,9 @@ export const hideAddRoleForm = () => {
     type: C.HIDE_ADD_ROLE_FORM
   }
 }
+
+export const selectCompany = () => {
+  return {
+    type: C.SELECT_COMPANY
+  }
+}

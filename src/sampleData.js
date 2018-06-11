@@ -20,10 +20,6 @@ var sampleData = {
       role: "Mayor Shinn"
     }
   ],
-  ui: {
-    currentView: "user",
-    showAddRoleForm: false
-  },
   companies: [
     {
       id: "35aa2103-dadb-486d-956d-5871ba522834",
@@ -69,7 +65,12 @@ var sampleData = {
       date: "May 2014",
       venue: "Haverhill High School"
     }
-  ]
+  ],
+  ui: {
+    currentView: "user",
+    showAddRoleForm: false,
+    companySelected: false
+  }
 }
 
 
