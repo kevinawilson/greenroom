@@ -1,30 +1,58 @@
 import React, {Component} from 'react';
-import Dropdown from 'react-dropdown';
 import {addUserRole, hideAddRoleForm, selectCompany} from '../utils/actions.js';
-import {SelectCompanyContainer, SelectProductionContainer} from '../utils/containers.js';
 
 class AddRoleForm extends Component {
 
   constructor(props) {
     super(props);
     this.ui = props.ui;
-    this.currentValue = null;
-    this.selectOptions = props.companies.map(company => ({ value: company.id, label: company.name }));
-    this.handleChange = this.handleChange.bind(this);
-    this.onSelect = props.onSelect;
+    this.onSubmit = props.onSubmit;
+    this.companies = props.companies;
+
+    this.state = {
+      showProductionDropdown: false,
+      showRoleInput: false
+    };
   };
 
-  handleChange(e) {
-    console.log(this.ui);
-    if (!this.ui.companySelected) {
-      this.onSelect(selectCompany());
+  handleChange = (e) => {
+    let propertyToSet = null;
+    let valueToAssign = null;
+
+    switch (e.target.name) {
+      case "companyDropdown":
+        propertyToSet = "showProductionDropdown";
+        valueToAssign = e.target.value === "false" ? false : true;
+        this.companyValue = e.target.label;
+        break;
+      case "productionDropdown":
+        propertyToSet = "showRoleInput";
+        break;
+      default:
+        return;
     };
+
+    this.setState({
+      [propertyToSet]: valueToAssign
+    })
+
+    console.log(this.state);
   };
 
   render() {
     return (
       <div>
-        <Dropdown options={this.selectOptions} onChange={this.handleChange} value={this.currentValue} placeholder="Select a theater company" />
+        <select name="companyDropdown" options={this.selectCompanyOptions} onChange={this.handleChange} value={this.companyValue} placeholder="Select a theater company">
+          <option value="false">-- Select Company --</option>
+          {
+            this.companies.map(company => {
+              return (
+                <option key={company.id} value={company.id}>{company.name}</option>
+              )
+            })
+          }
+        </select>
+        {this.state.showProductionDropdown ? <p>Selected</p> : null}
       </div>
     )
   };

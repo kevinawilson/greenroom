@@ -44,7 +44,6 @@ const ui = (state = {}, action) => {
         showAddRoleForm: false
       };
     case C.SELECT_COMPANY:
-      console.log({state});
       return {
         ...state,
         companySelected: true

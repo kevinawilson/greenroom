@@ -68,12 +68,9 @@ var sampleData = {
   ],
   ui: {
     currentView: "user",
-    showAddRoleForm: false,
-    companySelected: false
+    showAddRoleForm: false
   }
 }
 
 
-export {
-  sampleData
-};
+export {sampleData};
