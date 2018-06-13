@@ -7,7 +7,6 @@ import AddRoleForm from '../ui/AddRoleForm.js';
 import ShowAddRoleFormButton from '../ui/ShowAddRoleFormButton.js';
 import CompaniesView from '../ui/CompaniesView.js';
 import CompaniesList from '../ui/CompaniesList.js'
-import SelectProduction from '../ui/SelectProduction.js'
 
 //Navication
 export const NavBarContainer = connect(
@@ -52,9 +51,9 @@ export const UserRoleContainer = connect(
 
 export const AddRoleFormContainer = connect(
   state => ({
+    roles: [...state.roles],
     companies: [...state.companies],
-    productions: [...state.productions],
-    ui: {...state.ui}
+    productions: [...state.productions]
   }),
   dispatch => ({
     onSubmit(action) {
@@ -71,13 +70,6 @@ export const ShowAddRoleFormButtonContainer = connect(
     }
   })
 )(ShowAddRoleFormButton);
-
-export const SelectProductionContainer = connect(
-  state => ({
-    productions: [...state.productions]
-  }),
-  null
-)(SelectProduction);
 
 //Companies View
 export const CompaniesViewContainer = connect(

@@ -8,11 +8,11 @@ export const changeView = (newView) => {
   }
 }
 
-export const addUserRole = (show, company, role) => {
+export const addUserRole = (production, company, role) => {
   return {
     type: C.ADD_USER_ROLE,
     id: uuid(),
-    show: show,
+    production: production,
     company: company,
     role: role
   }
@@ -34,11 +34,5 @@ export const showAddRoleForm = () => {
 export const hideAddRoleForm = () => {
   return {
     type: C.HIDE_ADD_ROLE_FORM
-  }
-}
-
-export const selectCompany = () => {
-  return {
-    type: C.SELECT_COMPANY
   }
 }

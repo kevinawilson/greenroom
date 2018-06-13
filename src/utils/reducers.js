@@ -19,7 +19,7 @@ const roles = (state = [], action) => {
         ...state,
         {
           id: action.id,
-          show: action.show,
+          production: action.production,
           company: action.company,
           role: action.role
         }
@@ -42,11 +42,6 @@ const ui = (state = {}, action) => {
       return {
         ...state,
         showAddRoleForm: false
-      };
-    case C.SELECT_COMPANY:
-      return {
-        ...state,
-        companySelected: true
       };
     case C.CHANGE_VIEW:
       return {

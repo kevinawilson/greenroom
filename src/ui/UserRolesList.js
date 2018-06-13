@@ -9,7 +9,7 @@ const UserRolesList = ({roles, companies, productions, onDelete}) => {
     let currentProduction = productions.find(function(e) {
       return e.id === production;
     });
-
+    console.log(currentProduction);
     let currentCompany = companies.find(function(e) {
       return e.id === currentProduction.company;
     }).name;
