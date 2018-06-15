@@ -6,7 +6,8 @@ import RolesView from '../ui/RolesView.js';
 import AddRoleForm from '../ui/AddRoleForm.js';
 import ShowAddRoleFormButton from '../ui/ShowAddRoleFormButton.js';
 import CompaniesView from '../ui/CompaniesView.js';
-import CompaniesList from '../ui/CompaniesList.js'
+import CompaniesList from '../ui/CompaniesList.js';
+import AddCompanyForm from '../ui/AddCompanyForm.js';
 
 //Navication
 export const NavBarContainer = connect(
@@ -86,3 +87,14 @@ export const CompaniesListContainer = connect(
   }),
   null
 )(CompaniesList);
+
+export const AddCompanyFormContainer = connect(
+  state => ({
+    companies: [...state.companies]
+  }),
+  dispatch => ({
+    onSubmit(action) {
+      dispatch(action);
+    }
+  })
+)(AddCompanyForm);

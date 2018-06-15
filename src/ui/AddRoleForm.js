@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {AddCompanyFormContainer} from '../utils/containers.js';
 import {addUserRole, hideAddRoleForm} from '../utils/actions.js';
 
 class AddRoleForm extends Component {
@@ -23,6 +24,7 @@ class AddRoleForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.onSubmit(addUserRole(this.state.productionID, this.state.companyID, this.state.role));
+    this.onSubmit(hideAddRoleForm());
   };
 
   handleChange = (e) => {
@@ -31,7 +33,6 @@ class AddRoleForm extends Component {
 
     switch (e.target.name) {
       case "companyDropdown":
-        propertyToSet = "showProductionDropdown";
         valueToAssign = e.target.value === "false" ? false : true;
         this.companyValue = e.target.label;
         var companyProductions = this.productions.filter(function(production) {
@@ -39,32 +40,42 @@ class AddRoleForm extends Component {
         });
         this.setState({
           "companyProductions": companyProductions,
-          "companyID": e.target.value
+          "companyID": e.target.value,
+          "showSubmitButton": false,
+          "showRoleInput": false,
+          "showProductionDropdown": valueToAssign
         });
         break;
       case "productionDropdown":
-        propertyToSet = "showRoleInput";
         valueToAssign = e.target.value === "false" ? false : true;
         this.productionValue = e.target.label;
-        this.setState({"productionID": e.target.value});
+        this.setState({
+          "productionID": e.target.value,
+          "showRoleInput": valueToAssign,
+          "showSubmitButton": false
+        });
         break;
       case "roleInput":
-        propertyToSet = "showSubmitButton";
         valueToAssign = e.target.value.length > 0;
         this.setState({
+          "showSubmitButton": valueToAssign,
           "role": e.target.value
-        })
+        });
         break;
+      case "cancelButton":
+        this.onSubmit(hideAddRoleForm());
       default:
         return;
     };
-
-    this.setState({
-      [propertyToSet]: valueToAssign
-    })
   };
 
   render() {
+
+    const companiesDropdownOptions = this.companies.map(company => {
+        return (
+          <option key={company.id} value={company.id}>{company.name}</option>
+        )
+      });
 
     const productionDropdown = (<select name="productionDropdown" onChange={this.handleChange} value={this.productionValue}>
       <option value="false">-- Select Production --</option>
@@ -75,31 +86,26 @@ class AddRoleForm extends Component {
           )
         })
       }
-    </select>);
+      </select>);
 
     const roleInput = (<div>
         <label>Role:</label>
         <input type="text" name="roleInput" id="roleInput" onChange={this.handleChange}></input>
       </div>);
 
-    console.log(this.state);
-
-    return (
-      <form action="submit" onSubmit={this.handleSubmit}>
-        <select name="companyDropdown" onChange={this.handleChange} value={this.companyValue}>
-          <option value="false">-- Select Company --</option>
-          {
-            this.companies.map(company => {
-              return (
-                <option key={company.id} value={company.id}>{company.name}</option>
-              )
-            })
-          }
-        </select>
-        {this.state.showProductionDropdown ? productionDropdown : null}
-        {this.state.showRoleInput ? roleInput : null}
-        {this.state.showSubmitButton ? <input type="submit" value="Submit New Role"></input> : null}
-      </form>
+    return (<div>
+        <form action="submit" onSubmit={this.handleSubmit}>
+          <button type="button" name="cancelButton" onClick={this.handleChange}>Cancel</button><br/>
+          <select name="companyDropdown" onChange={this.handleChange} value={this.companyValue}>
+            <option value="false">-- Select Company --</option>
+            {companiesDropdownOptions}
+          </select><br/>
+          {this.state.showProductionDropdown ? productionDropdown : null}
+          {this.state.showRoleInput ? roleInput : null}
+          {this.state.showSubmitButton ? <input type="submit" value="Submit New Role"></input> : null}
+        </form>
+        <AddCompanyFormContainer/>
+      </div>
     )
   };
 };

@@ -56,7 +56,18 @@ const ui = (state = {}, action) => {
 
   const companies = (state = [], action) => {
     switch (action.type) {
-        default:
+      case C.ADD_COMPANY:
+        return [
+        ...state,
+        {
+          id: action.id,
+          name: action.name,
+          city: action.city,
+          usState: action.usState,
+          website: action.website
+        }
+      ];
+      default:
         return state;
       }
     }

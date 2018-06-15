@@ -36,3 +36,14 @@ export const hideAddRoleForm = () => {
     type: C.HIDE_ADD_ROLE_FORM
   }
 }
+
+export const addCompany = (name, city, usState, website) => {
+  return {
+    type: C.ADD_COMPANY,
+    id: uuid(),
+    name: name,
+    city: city,
+    usState: usState,
+    website: website
+  }
+}
