@@ -28,7 +28,6 @@ class AddRoleForm extends Component {
   };
 
   handleChange = (e) => {
-    let propertyToSet = null;
     let valueToAssign = null;
 
     switch (e.target.name) {
@@ -64,6 +63,7 @@ class AddRoleForm extends Component {
         break;
       case "cancelButton":
         this.onSubmit(hideAddRoleForm());
+        break;
       default:
         return;
     };

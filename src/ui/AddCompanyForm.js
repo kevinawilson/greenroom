@@ -7,25 +7,71 @@ class AddCompanyForm extends Component {
       super(props);
       this.onSubmit = props.onSubmit;
       this.companies = props.companies;
+
+      this.state = {
+          "companyName": null,
+          "companyCity": null,
+          "companyUsState": null,
+          "companyWebsite": null
+      };
   };
 
   handleSubmit = (e) => {
-    this.onSubmit(addCompany(this.companyNameInput.value, this.companyCityInput.value, this.companyUsStateInput.value, this.companyWebsiteInput.value));
+    e.preventDefault();
+    console.log(this.state);
+    this.onSubmit(addCompany(this.state.companyName, this.state.companyCity, this.state.companyUsState, this.state.companyWebsite));
   };
 
   handleCancel = (e) => {
 
   };
 
+  handleChange = (e) => {
+    let valueToAssign = null;
+    console.log(e.target.name);
+    switch (e.target.name) {
+      case "companyNameInput":
+        valueToAssign = e.target.value
+        this.companyNameInput = valueToAssign;
+        this.setState({
+          "companyName": valueToAssign
+        });
+        break;
+      case "companyCityInput":
+        valueToAssign = e.target.value;
+        this.companyCityInput = valueToAssign;
+        this.setState({
+          "companyCity": valueToAssign
+        });
+        break;
+      case "companyUsStateInput":
+        valueToAssign = e.target.value;
+        this.companyUsStateInput = e.target.label;
+        this.setState({
+          "companyUsState": valueToAssign
+        });
+        break;
+      case "companyWebsiteInput":
+        valueToAssign = e.target.value;
+        this.companyWebsiteInput = valueToAssign
+        this.setState({
+          "companyWebsite": valueToAssign
+        });
+        break;
+      default:
+        return;
+    };
+  };
+
   render() {
     return (
         <form onSubmit={this.handleSubmit}>
           <label>Company Name</label>
-          <input type="text" id="companyNameInput"></input><br/>
+          <input type="text" name="companyNameInput" onChange={this.handleChange}></input><br/>
           <label>City</label>
-          <input type="text" id="companyCityInput"></input>
+          <input type="text" name="companyCityInput" onChange={this.handleChange}></input>
           <label>State</label>
-          <select id="companyUsStateInput">
+          <select name="companyUsStateInput" onChange={this.handleChange}>
           	<option value="AL">Alabama</option>
           	<option value="AK">Alaska</option>
           	<option value="AZ">Arizona</option>
@@ -79,7 +125,7 @@ class AddCompanyForm extends Component {
           	<option value="WY">Wyoming</option>
           </select><br/>
           <label>Website</label>
-          <input type="text" id="companyWebsiteInput"></input><br/>
+          <input type="text" name="companyWebsiteInput" onChange={this.handleChange}></input><br/>
           <input type="submit" value="Submit New Company"></input>
           <button type="button" onClick={this.handleCancel}>Cancel</button>
         </form>

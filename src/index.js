@@ -16,6 +16,6 @@ const render = () => {
     document.getElementById('root'));
 };
 
-registerServiceWorker();
 store.subscribe(render);
+registerServiceWorker();
 render();

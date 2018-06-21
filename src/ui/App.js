@@ -7,9 +7,14 @@ import {
 } from '../utils/containers.js';
 import '../App.css';
 
+if (process.env.NODE_ENV !== 'production') {
+  const {whyDidYouUpdate} = require('why-did-you-update');
+  whyDidYouUpdate(React);
+}
+
 class App extends Component {
 
-  selectView = function () {
+  selectView = () => {
     switch (store.getState().ui.currentView) {
       case "user":
         return <RolesViewContainer />;
@@ -20,11 +25,11 @@ class App extends Component {
       case "shows":
         return <p>Shows</p>
       default:
-        return null;
-    }
-  }
+    };
+  };
 
   render() {
+
     return (<div className="App">
       <header className="App-header">
         <h1 className="App-title">Green Room</h1>
@@ -33,6 +38,8 @@ class App extends Component {
       {this.selectView()}
     </div>);
   };
+
+
 };
 
 export default App;

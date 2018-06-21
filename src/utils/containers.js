@@ -9,7 +9,7 @@ import CompaniesView from '../ui/CompaniesView.js';
 import CompaniesList from '../ui/CompaniesList.js';
 import AddCompanyForm from '../ui/AddCompanyForm.js';
 
-//Navication
+//Navigation
 export const NavBarContainer = connect(
   null,
   dispatch => ({
