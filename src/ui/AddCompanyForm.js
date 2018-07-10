@@ -18,12 +18,7 @@ class AddCompanyForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
-    this.onSubmit(addCompany(this.state.companyName, this.state.companyCity, this.state.companyUsState, this.state.companyWebsite));
-  };
-
-  handleCancel = (e) => {
-
+    this.onSubmit(this.state.companyName, this.state.companyCity, this.state.companyUsState, this.state.companyWebsite);
   };
 
   handleChange = (e) => {
@@ -127,7 +122,6 @@ class AddCompanyForm extends Component {
           <label>Website</label>
           <input type="text" name="companyWebsiteInput" onChange={this.handleChange}></input><br/>
           <input type="submit" value="Submit New Company"></input>
-          <button type="button" onClick={this.handleCancel}>Cancel</button>
         </form>
     );
   };

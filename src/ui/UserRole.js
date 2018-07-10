@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UserRole = ({id, show, company, role, onClick}) => {
+const UserRole = ({id, show, company, role}) => {
 
   return (
     <div>
@@ -9,7 +9,7 @@ const UserRole = ({id, show, company, role, onClick}) => {
         <li>Company: {company}</li>
         <li>Role: {role}</li>
       </ul>
-      <button type='button' onClick={onClick}>Delete Role</button>
+      <button type='button'>Delete Role</button>
       <hr/>
     </div>)
 };

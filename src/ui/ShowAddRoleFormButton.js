@@ -1,17 +1,15 @@
 import React from 'react';
 import {showAddRoleForm} from '../utils/actions.js';
 
-const ShowAddRoleFormButton = ({text, onSubmit}) => {
+const ShowAddRoleFormButton = ({onClick}) => {
 
-  const handleSubmit = function (e) {
+  const handleClick = function (e) {
     e.preventDefault();
-    onSubmit(showAddRoleForm());
+    onClick();
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type='submit' value='Add New Role' />
-    </form>
+    <button onClick={handleClick}>Add New Role</button>
   );
 }
 

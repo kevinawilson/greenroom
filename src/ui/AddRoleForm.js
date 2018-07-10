@@ -1,16 +1,19 @@
 import React, {Component} from 'react';
-import {AddCompanyFormContainer} from '../utils/containers.js';
-import {addUserRole, hideAddRoleForm} from '../utils/actions.js';
+import AddCompanyForm from '../ui/AddCompanyForm.js';
+import {sampleData} from '../sampleData.js';
+import uuid from 'uuid/v1';
 
 class AddRoleForm extends Component {
 
   constructor(props) {
     super(props);
     this.onSubmit = props.onSubmit;
-    this.companies = props.companies;
-    this.productions = props.productions;
+    this.productions = sampleData.productions;
+    this.companies = sampleData.companies;
 
     this.state = {
+      showAddCompanyFormButton: true,
+      showAddCompanyForm: false,
       showProductionDropdown: false,
       showRoleInput: false,
       showSubmitButton: false,
@@ -23,9 +26,43 @@ class AddRoleForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.onSubmit(addUserRole(this.state.productionID, this.state.companyID, this.state.role));
-    this.onSubmit(hideAddRoleForm());
+    this.onSubmit();
   };
+
+  handleNewCompany = (companyName, companyCity, companyUsState, companyWebsite) => {
+    console.log(companyName);
+
+    sampleData.companies.push({
+          id: uuid(),
+          name: companyName,
+        	city:	companyCity,
+          usState: companyUsState,
+          website: companyWebsite
+    });
+    this.setState({
+      "showAddCompanyForm": false,
+      "showAddCompanyFormButton": true
+    });
+  };
+
+  toggleAddRoleForm = (e) => {
+    switch (e.target.name) {
+      case "showAddCompanyForm":
+        this.setState({
+          "showAddCompanyForm": true,
+          "showAddCompanyFormButton": false
+        });
+        break;
+      case "cancelAddCompanyForm":
+        this.setState({
+          "showAddCompanyForm": false,
+          "showAddCompanyFormButton": true
+        });
+        break;
+      default:
+        return;
+      };
+    };
 
   handleChange = (e) => {
     let valueToAssign = null;
@@ -61,9 +98,6 @@ class AddRoleForm extends Component {
           "role": e.target.value
         });
         break;
-      case "cancelButton":
-        this.onSubmit(hideAddRoleForm());
-        break;
       default:
         return;
     };
@@ -95,16 +129,17 @@ class AddRoleForm extends Component {
 
     return (<div>
         <form action="submit" onSubmit={this.handleSubmit}>
-          <button type="button" name="cancelButton" onClick={this.handleChange}>Cancel</button><br/>
+          <button type="button" name="cancelButton" onClick={this.handleSubmit}>Cancel New Role</button><br/>
           <select name="companyDropdown" onChange={this.handleChange} value={this.companyValue}>
             <option value="false">-- Select Company --</option>
             {companiesDropdownOptions}
-          </select><br/>
+          </select>
+          {this.state.showAddCompanyFormButton ? <div><button type="button" name="showAddCompanyForm" onClick={this.toggleAddRoleForm}>Add New Company</button><br/></div> : null}
           {this.state.showProductionDropdown ? productionDropdown : null}
           {this.state.showRoleInput ? roleInput : null}
           {this.state.showSubmitButton ? <input type="submit" value="Submit New Role"></input> : null}
-        </form>
-        <AddCompanyFormContainer/>
+        </form><br />
+      {this.state.showAddCompanyForm ? <div><AddCompanyForm onSubmit={this.handleNewCompany} /><button type="button" name="cancelAddCompanyForm" onClick={this.toggleAddRoleForm}>Cancel New Company</button><br/></div> : null}
       </div>
     )
   };

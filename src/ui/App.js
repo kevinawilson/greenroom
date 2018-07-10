@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
+import NavBar from '../ui/NavBar.js';
+import RolesView from '../ui/RolesView.js';
 import store from '../store.js';
-import {
-  RolesViewContainer,
-  NavBarContainer,
-  CompaniesViewContainer
-} from '../utils/containers.js';
 import '../App.css';
 
 if (process.env.NODE_ENV !== 'production') {
@@ -14,12 +11,19 @@ if (process.env.NODE_ENV !== 'production') {
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentView: "user"
+    }
+  };
+
   selectView = () => {
-    switch (store.getState().ui.currentView) {
+    switch (this.state.currentView) {
       case "user":
-        return <RolesViewContainer />;
+        return <RolesView />;
       case "companies":
-        return <CompaniesViewContainer />
+        return <p>Companies</p>
       case "productions":
         return <p>Productions</p>
       case "shows":
@@ -34,12 +38,10 @@ class App extends Component {
       <header className="App-header">
         <h1 className="App-title">Green Room</h1>
       </header>
-      <NavBarContainer />
+      <NavBar onClick={(view) => this.setState({"currentView": view})}/>
       {this.selectView()}
     </div>);
   };
-
-
 };
 
 export default App;

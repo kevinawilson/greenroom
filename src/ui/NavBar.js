@@ -4,9 +4,9 @@ import {changeView} from '../utils/actions.js';
 const NavBar = ({onClick}) => {
 
   const handleClick = function (e) {
-    onClick(changeView(e.target.id));
     e.preventDefault();
-  }
+    onClick(e.target.id);
+  };
 
   return (
     <nav id='navbar'>
